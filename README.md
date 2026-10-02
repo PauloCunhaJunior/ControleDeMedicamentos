@@ -64,10 +64,10 @@ Depois copie os arquivos `App.js`, `src/` e `README.md` deste repositório para 
 
 ## Configuração das APIs
 
-A URL da MockAPI e a chave pública de demonstração do ReqRes já estão definidas em **`src/config.js`**. Se criar suas próprias contas, substitua esses valores:
+A URL da MockAPI e a chave pública de demonstração do ReqRes já estão definidas em **`src/config.js`**. O trecho abaixo é um modelo para quem quiser usar suas próprias contas; substitua os valores em `src/config.js`:
 
 ```js
-export const API_URL = 'https://6abef824c4d5ac548302d9cd.mockapi.io/medicamentos';
+export const API_URL = 'SUA_URL_COMPLETA_DA_MOCKAPI';
 export const REQRES_API_KEY = 'SUA_CHAVE_PUBLICA_DO_REQRES';
 ```
 
