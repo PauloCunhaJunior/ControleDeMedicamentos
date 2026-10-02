@@ -42,12 +42,14 @@ ControleDeMedicamentos/
 
 ## Instalação
 
-Este repositório já contém o projeto criado. Para usá-lo, abra esta pasta no terminal e execute:
+Este repositório já contém o projeto criado e as URLs/chave de demonstração configuradas. Para usá-lo, abra esta pasta no terminal e execute:
 
 ```powershell
 npm install
 npx expo start
 ```
+
+Na tela de login, use **`eve.holt@reqres.in`** e **`cityslicka`**. Essas são credenciais públicas de demonstração do ReqRes, não uma conta pessoal.
 
 Para reproduzir a criação do zero em outra pasta, use:
 
@@ -62,7 +64,7 @@ Depois copie os arquivos `App.js`, `src/` e `README.md` deste repositório para 
 
 ## Configuração das APIs
 
-A URL da MockAPI já está definida. Antes de testar o login, edite **`src/config.js`** para informar sua chave pública do ReqRes:
+A URL da MockAPI e a chave pública de demonstração do ReqRes já estão definidas em **`src/config.js`**. Se criar suas próprias contas, substitua esses valores:
 
 ```js
 export const API_URL = 'https://6abef824c4d5ac548302d9cd.mockapi.io/medicamentos';
@@ -77,7 +79,7 @@ export const REQRES_API_KEY = 'SUA_CHAVE_PUBLICA_DO_REQRES';
 2. Crie o recurso **`medicamentos`**.
 3. Crie estes campos do tipo texto/string: `nome`, `dosagem`, `horario`, `observacoes`. O `id` é gerado pela MockAPI; não o envie no cadastro.
 4. A URL do recurso já está configurada em `src/config.js`. Se usar outra conta, troque essa constante pela URL do novo recurso.
-5. O recurso pode começar vazio. Para testar, cadastre pelo aplicativo. Em 1º de outubro de 2026, esta URL já continha registros de exemplo com `name` e `avatar`; ajuste os campos do recurso para `nome`, `dosagem`, `horario` e `observacoes` e remova os registros de exemplo pelo painel da MockAPI se quiser uma lista limpa.
+5. O recurso pode começar vazio. Para testar, cadastre pelo aplicativo. Em 1º de outubro de 2026, esta URL já continha registros de exemplo com `name` e `avatar`; a lista exibe `name` como nome quando `nome` não existe. Para uma lista limpa, remova os registros de exemplo pelo painel da MockAPI.
 
 Exemplo de registro retornado pela MockAPI:
 
@@ -93,8 +95,8 @@ Exemplo de registro retornado pela MockAPI:
 
 ### ReqRes
 
-1. Crie uma conta gratuita em [ReqRes](https://reqres.in/) e obtenha uma chave pública para a API.
-2. Coloque a chave em `REQRES_API_KEY` em `src/config.js`.
+1. Para usar sua própria chave, crie uma conta em [ReqRes](https://reqres.in/) e obtenha uma chave pública para a API.
+2. Substitua `REQRES_API_KEY` em `src/config.js`.
 3. O aplicativo envia `POST https://reqres.in/api/login` com `email`, `password`, `x-api-key` e ambiente `prod`.
 4. Para testar o login de demonstração, use `eve.holt@reqres.in` e senha `cityslicka`, conforme o exemplo publicado pelo ReqRes. Se as credenciais de demonstração mudarem, consulte a documentação atual do serviço.
 
@@ -102,10 +104,9 @@ O ReqRes exige chave de API atualmente. Uma chave pública embutida no aplicativ
 
 ## Como executar no Expo Go
 
-1. Informe a chave pública do ReqRes em `src/config.js`.
-2. Execute `npx expo start` nesta pasta.
-3. Instale o Expo Go no celular e leia o QR code mostrado no terminal. No Android, use o leitor do Expo Go; no iPhone, use a câmera do sistema.
-4. Deixe computador e celular na mesma rede. Se a conexão local não funcionar, execute `npx expo start --tunnel`.
+1. Execute `npx expo start` nesta pasta.
+2. Instale o Expo Go no celular e leia o QR code mostrado no terminal. No Android, use o leitor do Expo Go; no iPhone, use a câmera do sistema.
+3. Deixe computador e celular na mesma rede. Se a conexão local não funcionar, execute `npx expo start --tunnel`.
 
 ## Como utilizar e testar
 
@@ -123,3 +124,9 @@ Se uma API estiver indisponível, a tela mostra uma mensagem e permite tentar no
 `Login → token da ReqRes → AsyncStorage → Home → cadastro/listagem → MockAPI (POST/GET/DELETE) → logout`
 
 O `AuthContext` mantém o token em memória e lê o AsyncStorage na inicialização. O `AppNavigator` monta apenas a pilha de login ou a pilha autenticada, impedindo o retorno por Voltar entre essas áreas. Após salvar, o aplicativo vai para a lista para mostrar imediatamente o medicamento recém-cadastrado.
+
+## Relatório e capturas
+
+O arquivo [Relatorio_ControleDeMedicamentos.pdf](Relatorio_ControleDeMedicamentos.pdf) resume os requisitos, identifica a dupla e inclui capturas das quatro telas. Os prints originais estão em `docs/prints/`. As capturas foram feitas na versão web com largura de celular; o registro de exemplo usado na lista foi removido da MockAPI depois do teste.
+
+Repositório: [github.com/PauloCunhaJunior/ControleDeMedicamentos](https://github.com/PauloCunhaJunior/ControleDeMedicamentos).

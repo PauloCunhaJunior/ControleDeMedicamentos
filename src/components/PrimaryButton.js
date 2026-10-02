@@ -1,6 +1,7 @@
 import { Pressable, StyleSheet, Text } from 'react-native';
+import { colors } from './styles';
 
-export default function PrimaryButton({ title, onPress, disabled, variant = 'primary' }) {
+export default function PrimaryButton({ title, onPress, disabled, variant = 'primary', compact = false }) {
   return (
     <Pressable
       accessibilityRole="button"
@@ -11,21 +12,25 @@ export default function PrimaryButton({ title, onPress, disabled, variant = 'pri
         styles.button,
         variant === 'outline' && styles.outline,
         variant === 'danger' && styles.danger,
+        compact && styles.compact,
         disabled && styles.disabled,
         pressed && !disabled && styles.pressed,
       ]}
     >
-      <Text style={[styles.text, variant === 'outline' && styles.outlineText]}>{title}</Text>
+      <Text style={[styles.text, variant === 'outline' && styles.outlineText, variant === 'danger' && styles.dangerText, compact && styles.compactText]}>{title}</Text>
     </Pressable>
   );
 }
 
 const styles = StyleSheet.create({
-  button: { backgroundColor: '#21618c', borderRadius: 10, padding: 15, alignItems: 'center', marginTop: 12 },
-  outline: { backgroundColor: '#fff', borderWidth: 1, borderColor: '#21618c' },
-  danger: { backgroundColor: '#a93226' },
-  disabled: { opacity: 0.65 },
-  pressed: { opacity: 0.8 },
-  text: { color: '#fff', fontSize: 16, fontWeight: '600' },
-  outlineText: { color: '#21618c' },
+  button: { backgroundColor: colors.primary, borderRadius: 13, minHeight: 52, paddingHorizontal: 18, paddingVertical: 14, alignItems: 'center', justifyContent: 'center', marginTop: 12 },
+  outline: { backgroundColor: colors.surface, borderWidth: 1.5, borderColor: colors.border },
+  danger: { backgroundColor: colors.dangerSoft },
+  compact: { minHeight: 38, paddingHorizontal: 14, paddingVertical: 7, marginTop: 0 },
+  disabled: { opacity: 0.55 },
+  pressed: { opacity: 0.78 },
+  text: { color: colors.surface, fontSize: 16, fontWeight: '700' },
+  outlineText: { color: colors.primaryDark },
+  dangerText: { color: colors.danger },
+  compactText: { fontSize: 13 },
 });

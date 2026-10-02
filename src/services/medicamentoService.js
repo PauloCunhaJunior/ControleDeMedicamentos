@@ -24,7 +24,11 @@ async function requisicao(url, options, erro) {
 export async function getMedicamentos() {
   const dados = await requisicao(getUrl(), undefined, 'Não foi possível buscar os medicamentos.');
   if (!Array.isArray(dados)) throw new Error('A MockAPI retornou uma lista inválida.');
-  return dados;
+  // O recurso público também contém registros de exemplo criados com o campo `name`.
+  return dados.map((item) => ({
+    ...item,
+    nome: item.nome || item.name || 'Medicamento sem nome',
+  })).reverse();
 }
 
 export function createMedicamento(medicamento) {

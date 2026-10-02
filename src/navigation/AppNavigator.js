@@ -6,6 +6,7 @@ import LoginScreen from '../screens/LoginScreen';
 import HomeScreen from '../screens/HomeScreen';
 import CadastroMedicamentoScreen from '../screens/CadastroMedicamentoScreen';
 import ListaMedicamentosScreen from '../screens/ListaMedicamentosScreen';
+import { colors } from '../components/styles';
 
 const Stack = createNativeStackNavigator();
 
@@ -13,12 +14,12 @@ export default function AppNavigator() {
   const { token, carregando } = useAuth();
 
   if (carregando) {
-    return <View style={{ flex: 1, justifyContent: 'center' }}><ActivityIndicator size="large" color="#21618c" /></View>;
+    return <View style={{ flex: 1, justifyContent: 'center', backgroundColor: colors.background }}><ActivityIndicator size="large" color={colors.primary} /></View>;
   }
 
   return (
     <NavigationContainer>
-      <Stack.Navigator screenOptions={{ headerStyle: { backgroundColor: '#f4f7f9' }, headerTintColor: '#17324d' }}>
+      <Stack.Navigator screenOptions={{ headerStyle: { backgroundColor: colors.background }, headerTintColor: colors.ink, headerShadowVisible: false, headerTitleStyle: { fontWeight: '700' }, contentStyle: { backgroundColor: colors.background } }}>
         {token ? (
           <>
             <Stack.Screen name="Home" component={HomeScreen} options={{ title: 'Início', headerBackVisible: false }} />
